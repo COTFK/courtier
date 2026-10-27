@@ -1,0 +1,15 @@
+info:
+  name: Get card data - for multiple cards
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{BASE_URL}}/v1/cards?ids=90681088&ids=66431519&ids=02772337"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

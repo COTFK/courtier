@@ -1,0 +1,17 @@
+info:
+  name: Get card scripts - for multiple cards
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{BASE_URL}}/v1/scripts/cards?ids=66431519&ids=23015896&ids=44455560&ids=90681088&ids=18621798&ids=2526224&ids=14558127&ids=97268402&ids=24508238&ids=33854624&ids=6637331&ids=65305978&ids=57554544&ids=91703676&ids=84211599&ids=49238328&ids=24224830&ids=10045474&ids=40366667&ids=94259633&ids=60303245&ids=87871125&ids=2772337&ids=48815792&ids=8264361&ids=29301450&ids=93039339&ids=64182380"
+  body:
+    type: none
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

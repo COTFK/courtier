@@ -1,0 +1,12 @@
+# Python stuff
+.venv/
+__pycache__/
+.coverage
+.coverage.*
+htmlcov/
+
+*.db
+*.db-shm
+*.db-wal
+card_images/
+.env

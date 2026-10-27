@@ -1,0 +1,28 @@
+# Version control and local state
+.git
+.gitignore
+
+# Local environment and secrets
+.env
+.env.*
+
+# Local build and runtime artifacts
+.venv/
+__pycache__/
+*.py[cod]
+*.db
+*.db-shm
+*.db-wal
+card_images/
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.ruff_cache/
+
+# Tests, automation, and editor files are not needed to build the image
+docs/
+tests/
+.github/
+.vscode/
+.idea/

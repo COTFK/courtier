@@ -1,0 +1,66 @@
+[project]
+name = "courtier"
+version = "0.1.0"
+description = "Caches Yu-Gi-Oh! card data, images, and Lua scripts."
+readme = "README.md"
+authors = [
+    { name = "Antonio Curavalea", email = "one.kyonblack@gmail.com" }
+]
+license = "AGPL-3.0-or-later"
+requires-python = ">=3.14"
+dependencies = [
+    "aiosqlite>=0.22.1",
+    "fastapi>=0.149.0",
+    "httpx2>=2.16.0",
+    "obstore>=0.12.0",
+    "pydantic>=2.14.1",
+    "pydantic-settings>=2.16.0",
+    "starlette>=1.9.0",
+    "uvicorn>=0.54.0",
+]
+
+[project.scripts]
+courtier = "courtier.app:main"
+
+[build-system]
+requires = ["uv_build>=0.12.18,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "anyio>=4.15.1",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff==0.17.2",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["courtier"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    # Docstrings belong where they add meaning, not on every function.
+    "D",
+    # Copyright headers and namespace packages add noise to this app.
+    "CPY",
+    "INP",
+    # The formatter owns trailing commas, implicit concatenation, and line length.
+    "COM812",
+    "ISC001",
+    "E501",
+    # Exceptions take plain messages; a class per message is not worth it here.
+    "TRY003",
+    "EM",
+    # HTTP status codes are clearer as literals in tests and routes.
+    "PLR2004",
+    # FastAPI inspects endpoint annotations at runtime.
+    "TC",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Tests assert with plain `assert` and use dummy credentials.
+"tests/**" = ["S101", "S106"]

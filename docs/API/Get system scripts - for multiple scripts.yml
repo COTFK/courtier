@@ -1,0 +1,17 @@
+info:
+  name: Get system scripts - for multiple scripts
+  type: http
+  seq: 9
+
+http:
+  method: GET
+  url: "{{BASE_URL}}/v1/scripts/system?file=archetype_setcode_constants.lua&file=card_counter_constants.lua&file=cards_specific_functions.lua&file=chain.lua&file=constant.lua&file=debug_utility.lua&file=deprecated_functions.lua&file=proc_equip.lua&file=proc_fusion.lua&file=proc_fusion_spell.lua&file=proc_gemini.lua&file=proc_link.lua&file=proc_maximum.lua&file=proc_normal.lua&file=proc_pendulum.lua&file=proc_persistent.lua&file=proc_ritual.lua&file=proc_rush.lua&file=proc_skill.lua&file=proc_spirit.lua&file=proc_synchro.lua&file=proc_union.lua&file=proc_unofficial.lua&file=proc_workaround.lua&file=proc_xyz.lua&file=utility.lua"
+  body:
+    type: none
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

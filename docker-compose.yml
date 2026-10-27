@@ -1,0 +1,44 @@
+services:
+  s3:
+    image: adobe/s3mock:5.2.3
+    environment:
+      COM_ADOBE_TESTING_S3MOCK_STORE_INITIAL_BUCKETS: courtier
+      COM_ADOBE_TESTING_S3MOCK_STORE_ROOT: /s3mockroot
+      COM_ADOBE_TESTING_S3MOCK_STORE_RETAIN_FILES_ON_EXIT: "true"
+    volumes:
+      - courtier-s3:/s3mockroot
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:9090/favicon.ico"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  courtier:
+    build: .
+    image: courtier:latest
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DATABASE_PATH: /data/cache.db
+      HOT_RELOAD: "false"
+      PORT: "8000"
+      S3_BUCKET: courtier
+      S3_ENDPOINT: http://s3:9090
+      S3_REGION: us-east-1
+      S3_ACCESS_KEY_ID: local-access-key
+      S3_SECRET_ACCESS_KEY: local-secret-key
+      S3_ADDRESSING_STYLE: path
+      S3_ALLOW_HTTP: "true"
+    depends_on:
+      s3:
+        condition: service_healthy
+    ports:
+      - "${COURTIER_PORT:-8000}:8000"
+    volumes:
+      - courtier-data:/data
+
+volumes:
+  courtier-data:
+  courtier-s3:
